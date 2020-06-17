@@ -5,7 +5,6 @@ export default class Error extends Component {
     state = {
         hasError: false
     }
-
     static getDerivedStateFromError(error){
         return{hasError:true};
     }

@@ -1,12 +1,12 @@
 import React,{Suspense} from 'react';
-import Loader from './Loader'
-import CircleLoader from './CircleLoader'
+import Loader from './components/Loader'
+import CircleLoader from './components/CircleLoader'
 import image1 from './logo512.png'
 import image2 from './logo512.png'
-import Error from './Error'
+import Error from './components/Error'
 
-  const Data = React.lazy(()=> import('./Data'))
-  const Image = React.lazy(()=> import('./Image'))
+  const Data = React.lazy(()=> import('./components/Data'))
+  const Image = React.lazy(()=> import('./components/Image'))
 
     function App() {
         return (<>
@@ -19,18 +19,22 @@ import Error from './Error'
           </Suspense>
           <Suspense fallback ={<CircleLoader/>}>
             <div>
-            <Error>
-              <Image val={image1}/>
-            </Error>
+              <Error>
+                <Image val={image1}/>
+              </Error>
             </div>
-            <Error>
-              <Image val={image2}/>
-            </Error>
-            <Error>
-              <Image val={"noimg"}/>
-            </Error>
+            <div>
+              <Error>
+                <Image val={image2}/>
+              </Error>
+            </div>
+            <div>
+              <Error>
+                <Image val={"noimg"}/>
+              </Error>
+            </div>
           </Suspense>
-            </div>
+        </div>
       </>);
     }
 
