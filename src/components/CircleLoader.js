@@ -36,4 +36,4 @@ import injectSheet from "react-jss";
     }
   }
      
-    export default injectSheet(StyleSheet)(Loader);
+export default injectSheet(StyleSheet)(Loader);
