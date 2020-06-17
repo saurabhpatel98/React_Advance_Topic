@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{Suspense} from 'react';
+import Loader from './Loader'
+import CircleLoader from './CircleLoader'
+import image1 from './logo512.png'
+import image2 from './logo512.png'
+import Error from './Error'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  const Data = React.lazy(()=> import('./Data'))
+  const Image = React.lazy(()=> import('./Image'))
+
+    function App() {
+        return (<>
+        <div >
+          <Suspense fallback={<Loader/>}>
+            <Data/>
+          </Suspense>
+          <Suspense fallback={<Loader/>}>
+              <Data/>
+          </Suspense>
+          <Suspense fallback ={<CircleLoader/>}>
+            <div>
+            <Error>
+              <Image val={image1}/>
+            </Error>
+            </div>
+            <Error>
+              <Image val={image2}/>
+            </Error>
+            <Error>
+              <Image val={"noimg"}/>
+            </Error>
+          </Suspense>
+            </div>
+      </>);
+    }
 
 export default App;
